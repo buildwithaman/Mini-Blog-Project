@@ -1,0 +1,13 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.m-auto{
+    margin:auto;
+}
+
+.f-size{
+    font-size: 2rem;
+}

@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% block msg %}
+{% if messages %}
+    {% for message in messages  %}
+    <p class="alert alert-success">{{message}}</p>
+    {% endfor %}
+{% endif %}
+{% endblock msg %}
+
+
+
+
+
+{% block content %}
+<div class="col-sm-12">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for post in posts %}
+            {{post.label_tag}}{{post}} <p>{{post.errors|striptags}}</p>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Add</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block msg %}
+{% if messages %}
+{% for message in messages %}
+<p class="alert alert-success">{{message}}</p>
+{% endfor %}
+{% endif %}
+{% endblock msg %}
+
+
+
+
+{% block content %}
+
+<div class="col-sm-10 m-auto" >
+    <h2 class="my-5">Home Page</h2>
+    {% for post in posts %}
+    <h3>{{post.title}}</h3>
+    <p>{{post.desc}}</p> <br><br>
+    {% endfor %}
+    {% comment %} <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ea suscipit hic dolor placeat quas iste quis tempora aut. Modi dolorum cumque non dignissimos sint, eligendi, et iure doloremque laudantium cupiditate maiores! Eos aut voluptatem placeat, sit nobis consequuntur numquam quos et accusantium fuga laudantium eum aperiam iste tempora doloremque obcaecati, repellat itaque porro, veritatis quis eaque repudiandae sequi? Alias animi soluta voluptatem dicta assumenda temporibus. Sequi delectus doloribus cumque, ad magnam repellendus nulla rerum et rem laborum fugit fugiat quibusdam pariatur eveniet repellat excepturi ipsa commodi quo, reiciendis nihil accusamus! Earum rem quod saepe repellat minima, ea nemo asperiores.</p> {% endcomment %}
+</div>
+
+
+{%endblock content %}

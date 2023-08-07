@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block msg %}
+ {% if messages %} 
+    {% for message in messages %}
+        <p class="alert alert-success">{{message}}</p>
+    {% endfor %}
+ {%endif%}
+{% endblock msg %}
+
+{% block content %}
+
+
+<div class="col-sm-12">
+    <h2 class=text-center >Contact Us</h2>
+    <div class="col-sm-6 m-auto">
+        <form action="" method="POST" class="my-5" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+        {% for form in form.non_field_errors  %}
+        <p class="alert alert-danger">{{error}}</p>
+        {% endfor %}
+        {% endif %}
+        
+        {% for fm in form %}
+        {{fm.label_tag}}{{fm}} <p class="text-warning">{{fm.errors|striptags}}</p>
+        
+        {% endfor %}
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+           
+    </div>
+    <div class="row">
+        <div class="col-sm-6 m-auto text-center" >
+            <a href=""><i class="fa-brands fa-instagram fs-3 ms-5  "></i></a>
+            <a href=""><i class="fa-brands fa-facebook fs-3 ms-5" ></i></a>
+            <a href=""><i class="fa-brands fa-twitter fs-3 ms-5" ></i></a>
+            
+        </div>
+    </div>   
+</div>
+
+
+{% endblock content %}

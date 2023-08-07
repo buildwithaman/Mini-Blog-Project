@@ -1,0 +1,70 @@
+{% extends 'blog/base.html' %}
+
+{% block msg %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="alert alert-danger" >{{error}}</p>
+{% endfor %}
+
+{% endif %}
+{% if messages  %}
+{% for message in messages %}
+<p class="alert alert-success">{{message}}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock msg %}
+
+{% block side %}
+<div class="col-sm-8">
+    <br>
+    <h1 class="d-inline">{{name}}</h1>
+    {% for grp in group  %}
+    <h3 class="d-inline">{{" , "}}{{grp.name}}</h3>
+    {% endfor %}
+    <br>
+</div>
+{%endblock side %}
+
+{% block content %}
+
+<div class="col-sm-12">
+    <br><br>
+    <h2 class="text-center">Dashboard Page</h2>
+    
+    
+    <br>
+    <a href="{% url 'post' %}" class="btn btn-success mb-2" >Add Post</a>
+    <table class="table table-hover">
+        <h3 class="alert alert-warning ">Show Post Information</h3>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        
+            {% for post in posts %}
+            <tr>
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.desc}}</td>
+                <td><a href="{% url 'editpost' post.id %}" class="btn btn-sm btn-warning mb-2">Edit</a>
+                    {% if perms.blog.delete_postmodel %}
+                    <form action="{% url 'deletepost' post.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            
+        
+    </table>
+    <a href="{% url 'signout' %}" class="btn btn-primary">Log Out</a>
+</div>
+{% endblock content %}
+
+
+
